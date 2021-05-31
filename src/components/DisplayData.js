@@ -3,7 +3,7 @@ import { Card, ListGroup } from 'react-bootstrap';
 const user = {
     fullName: 'hello goodbye',
     email: 'lala@gmail.com',
-    dob: '01/01/1990',
+    dateOfBirth: '01/01/1990',
     city: 'Rishon LeZion',
     street: 'wawa',
     streetNumebr: 12,
