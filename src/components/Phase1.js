@@ -1,6 +1,11 @@
 import { Form, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import Phase2 from './Phase2';
 
 function Phase1() {
+  const history = useHistory();
+  const handleClick = () => history.push('/Phase2');
+
   return (
     <Form>
       <Form.Group className='mb-3' controlId='formName'>
@@ -18,7 +23,7 @@ function Phase1() {
         <Form.Control type='date' name='dateOfBirth' />
       </Form.Group>
 
-      <Button variant='primary' type='submit'>
+      <Button variant='primary' onClick={handleClick}>
         Next
       </Button>
     </Form>
