@@ -1,30 +1,20 @@
-import React, { useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import React,{useState} from 'react'
+import { Form, Button,Container } from "react-bootstrap";
+
 
 function Phase2() {
-  
+   
   return (
     <Container>
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>City</Form.Label>
-<<<<<<< HEAD
           <Form.Control type="text" placeholder="Enter City" />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Address</Form.Label>
           <Form.Control type="text" placeholder="Enter Address" />
         </Form.Group>
-
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="phone" placeholder="Password" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-=======
           <Form.Control type='text' placeholder='Enter City' name='city' />
         </Form.Group>
 
@@ -42,7 +32,15 @@ function Phase2() {
         </Form.Group>
         <Button variant='primary mr-2'>Back</Button>
         <Button variant='primary ml-2'>Submit</Button>
->>>>>>> eed4cd75f1f367a446f05eecd9cecb037a8fe36f
+
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control type="phone" placeholder="Password" />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </Form>
     </Container>
   );
