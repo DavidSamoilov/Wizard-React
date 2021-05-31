@@ -8,6 +8,7 @@ function Phase2() {
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>City</Form.Label>
+<<<<<<< HEAD
           <Form.Control type="text" placeholder="Enter City" />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
@@ -23,6 +24,25 @@ function Phase2() {
         <Button variant="primary" type="submit">
           Submit
         </Button>
+=======
+          <Form.Control type='text' placeholder='Enter City' name='city' />
+        </Form.Group>
+
+        <Form.Group controlId='formBasicPassword'>
+          <Form.Label>Street</Form.Label>
+          <Form.Control type='text' placeholder='Enter Street' name='street' />
+        </Form.Group>
+        <Form.Group controlId='formBasicPassword'>
+          <Form.Label>Number</Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Enter Number'
+            name='number'
+          />
+        </Form.Group>
+        <Button variant='primary mr-2'>Back</Button>
+        <Button variant='primary ml-2'>Submit</Button>
+>>>>>>> eed4cd75f1f367a446f05eecd9cecb037a8fe36f
       </Form>
     </Container>
   );

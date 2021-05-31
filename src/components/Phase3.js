@@ -11,8 +11,10 @@ const Phase3 = () => {
         <Form.Label>Hobbies</Form.Label>
         <Form.Control type='text' placeholder='Enter hobbies' />
       </Form.Group>
-
-      <Button variant='primary' type='submit'>
+      <Button variant='primary' type='submit' className='mr-2'>
+        Back
+      </Button>
+      <Button variant='primary' type='submit' className='ml-2'>
         Submit
       </Button>
     </Form>
