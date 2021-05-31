@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 function Phase2() {
   const history = useHistory();
   const submitToPhase3 = () => history.push('/phase3');
-  const goBackToPhase1 = () => history.push('/phase1');
+  const goBackToPhase1 = () => history.push('/');
 
   return (
     <Form>
