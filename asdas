@@ -1,0 +1,43 @@
+[33mcommit 9a41bb46b55fd217816575d81a36ee3e33a502f0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: NadavLalo <nadavlalo@gmail.com>
+Date:   Mon May 31 14:43:56 2021 +0300
+
+    Added bootstrap import and bootstrap links
+
+[33mcommit 28ff56b2b7ec43fb1e3a6fcdef6f7cf720a217a8[m[33m ([m[1;32mphase2[m[33m)[m
+Author: David <dada7117@gmail.com>
+Date:   Mon May 31 14:33:15 2021 +0300
+
+    Added bootstrap
+
+[33mcommit 80352a78dbd1cd365935d275f8fa941e50d38fd2[m
+Merge: fdfde4b e5a59c8
+Author: NadavLalo <nadavlalo@gmail.com>
+Date:   Mon May 31 13:56:44 2021 +0300
+
+    Merge branch 'main' of https://github.com/DavidSamoilov/Wizard-React
+    First commit
+
+[33mcommit e5a59c807243903b2966305376815c3f56c804db[m
+Author: NadavLalo <47608700+NadavLalo@users.noreply.github.com>
+Date:   Mon May 31 13:52:24 2021 +0300
+
+    Delete README.md
+
+[33mcommit fdfde4b4cd88334a0f044735bf5f463d0c279389[m
+Author: NadavLalo <nadavlalo@gmail.com>
+Date:   Mon May 31 13:48:49 2021 +0300
+
+    Added packages.json
+
+[33mcommit 7935e3bb22ed12babfa10ee56f7e5d356c266274[m
+Author: NadavLalo <nadavlalo@gmail.com>
+Date:   Mon May 31 13:44:41 2021 +0300
+
+    Initialize project using Create React App
+
+[33mcommit cf9ca427aa42dba6390c87cd9caafe0c8a9cdc44[m
+Author: DavidSamoilov <66166375+DavidSamoilov@users.noreply.github.com>
+Date:   Mon May 31 13:34:15 2021 +0300
+
+    Initial commit
