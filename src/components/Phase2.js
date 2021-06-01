@@ -87,7 +87,7 @@ function Phase2({ onChange, onValidate }) {
       );
     }
     if (formValid) {
-      console.log("ok");
+      history.push("/phase3");
     }
   };
 
