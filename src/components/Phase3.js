@@ -43,24 +43,26 @@ const Phase3 = ({ onChange, onValidate }) => {
       );
     }
     if (formValid) {
-      localStorage.setItem("phase3", JSON.stringify({image: formData.image.value, hobbies: formData.hobbies.value}))
+      const formValues = {image: formData.image.value, hobbies: formData.hobbies.value}
+      localStorage.setItem("phase3", JSON.stringify(formValues))
+      history.push({pathname:'/home', formValues})
     }
   };
 
   useEffect(() => {
     for (const input in formData) {
       if (!formData[input].valid) {
-        setFormValid(false);
+        setFormValid(prevState=> !prevState);
         return;
       }
     }
-    setFormValid(true);
+    setFormValid(prevState=> !prevState);
   }, [formData]);
 
   useEffect(() => {
-    if(!localStorage.getItem("phase2Data")) {
-      history.push('/phase2')
-    }
+    // if(!localStorage.getItem("phase2Data")) {
+    //   history.push('/phase2')
+    // }
   }, [])
 
   return (

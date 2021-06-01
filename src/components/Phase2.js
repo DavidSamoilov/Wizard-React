@@ -87,7 +87,13 @@ function Phase2({ onChange, onValidate }) {
       );
     }
     if (formValid) {
-      localStorage.setItem("Phase2Data", JSON.stringify(phase2Data));
+      const formValues = {
+        city: phase2Data.city.value,
+        street: phase2Data.street.value,
+        number: phase2Data.number.value,
+      };
+
+      localStorage.setItem("Phase2Data", JSON.stringify(formValues));
       history.push("/Phase3");
     }
   };
@@ -101,6 +107,7 @@ function Phase2({ onChange, onValidate }) {
           onBlur={(e) => onValidate(e, phase2Data, setPhase2Data)}
           type="text"
           placeholder="Enter City"
+          value={phase2Data.city.value}
           name="city"
         />
         <ErrorMessages errors={phase2Data.city.errors} />
@@ -114,6 +121,7 @@ function Phase2({ onChange, onValidate }) {
           type="text"
           placeholder="Enter Street"
           name="street"
+          value={phase2Data.street.value}
         />
         <ErrorMessages errors={phase2Data.street.errors} />
       </Form.Group>
@@ -125,6 +133,7 @@ function Phase2({ onChange, onValidate }) {
           type="number"
           placeholder="Enter Number"
           name="number"
+          value={phase2Data.number.value}
         />
         <ErrorMessages errors={phase2Data.number.errors} />
       </Form.Group>
