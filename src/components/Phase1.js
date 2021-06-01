@@ -1,9 +1,10 @@
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ErrorMessages from './ErrorMessages';
 
 function Phase1({ onChange, onValidate }) {
+  const [formValid, setFormValid] = useState(false);
   const [phase1Data, setPhaseData] = useState({
     name: {
       value: '',
@@ -33,20 +34,40 @@ function Phase1({ onChange, onValidate }) {
 
   const history = useHistory();
   const handleClick = () => {
-    // for (const prop in phase1Data) {
-    //   if (!phase1Data[prop].value) {
-    //     return false;
-    //   }
-    // };
 
-    if (true) {
+    if (formValid) {
       localStorage.setItem('Phase1', JSON.stringify(phase1Data));
       history.push('/Phase2')
     }
   }
 
+
+  const submitHandler = e => {
+    e.preventDefault();
+
+    for (const input in phase1Data) {
+      onValidate(
+        { target: { name: [input], value: phase1Data[input].value } },
+        phase1Data,
+        setPhaseData
+      );
+    }
+  };
+
+  useEffect(() => {
+    for (const input in phase1Data) {
+      if (!phase1Data[input].valid) {
+        setFormValid(false);
+        return;
+      }
+    }
+    setFormValid(true);
+  }, [phase1Data]);
+
+
+
   return (
-    <Form>
+    <Form onSubmit={(e) => submitHandler(e)}>
       <Form.Group className='mb-3' controlId='formName'>
         <Form.Label>Name</Form.Label>
         <Form.Control type='text' name='name' placeholder='Enter Name'
@@ -71,7 +92,7 @@ function Phase1({ onChange, onValidate }) {
         <ErrorMessages errors={phase1Data.dob.errors} />
       </Form.Group>
 
-      <Button variant='primary' onClick={handleClick}>
+      <Button variant='primary' type='submit' onClick={handleClick}>
         Next
       </Button>
     </Form>
