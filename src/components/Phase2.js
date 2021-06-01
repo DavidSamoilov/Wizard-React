@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import ErrorMessages from "./ErrorMessages";
 function Phase2({ onChange, onValidate }) {
+  const [formValid, setFormValid] = useState(false);
+
   const history = useHistory();
   const goBackToPhase1 = () => history.push("/");
 
@@ -64,13 +66,30 @@ function Phase2({ onChange, onValidate }) {
     },
   });
 
-  const submitToPhase3 = () => {
-    if (true) {
-    
-        history.push("/phase3");
+  useEffect(() => {
+    for (const input in phase2Data) {
+      if (!phase2Data[input].valid) {
+        setFormValid(false);
+        return;
       }
     }
-  ;
+    setFormValid(true);
+  }, [phase2Data]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    for (const input in phase2Data) {
+      onValidate(
+        { target: { name: [input], value: phase2Data[input].value } },
+        phase2Data,
+        setPhase2Data
+      );
+    }
+    if (formValid) {
+      console.log("ok");
+    }
+  };
 
   return (
     <Form>
@@ -111,7 +130,7 @@ function Phase2({ onChange, onValidate }) {
       <Button variant="primary mr-2" onClick={goBackToPhase1}>
         Back
       </Button>
-      <Button variant="primary ml-2" onClick={submitToPhase3}>
+      <Button variant="primary ml-2" onClick={submitHandler}>
         Submit
       </Button>
     </Form>
