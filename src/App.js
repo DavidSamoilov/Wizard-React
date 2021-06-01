@@ -30,9 +30,7 @@ function App() {
 
     if (!value && formState[name].validations.required) {
       newErrors.push(`${name} is required!`);
-    }
-
-    if (
+    } else if (
       value &&
       !formState[name].value.match(formState[name].validations.pattern)
     ) {
@@ -53,10 +51,10 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' exact>
-            <Phase1 onChange={inputChangeHandler} onValidate={validateInput} />
+            <Phase1 />
           </Route>
           <Route path='/Phase2'>
-            <Phase2 onChange={inputChangeHandler} onValidate={validateInput} />
+            <Phase2 />
           </Route>
           <Route path='/Phase3'>
             <Phase3 onChange={inputChangeHandler} onValidate={validateInput} />
