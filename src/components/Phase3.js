@@ -44,7 +44,7 @@ const Phase3 = ({ onChange, onValidate }) => {
     }
     if (formValid) {
       const formValues = {image: formData.image.value, hobbies: formData.hobbies.value}
-      localStorage.setItem("phase3", JSON.stringify(formValues))
+      localStorage.setItem("phase3Data", JSON.stringify(formValues))
       history.push('/home')
     }
   };
@@ -60,7 +60,7 @@ const Phase3 = ({ onChange, onValidate }) => {
   }, [formData]);
 
   useEffect(() => {
-    if(!localStorage.getItem("phase2")) {
+    if(!localStorage.getItem("phase2Data")) {
       history.push('/phase2')
     }
   }, [])
