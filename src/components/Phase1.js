@@ -37,7 +37,7 @@ function Phase1({ onChange, onValidate }) {
 
     if (formValid) {
       const formValues = { name: phase1Data.name.value, email: phase1Data.email.value, dob: phase1Data.dob.value };
-      localStorage.setItem('phase1', JSON.stringify(formValues));
+      localStorage.setItem('phase1Data', JSON.stringify(formValues));
       history.push('/Phase2')
     }
   }
