@@ -66,6 +66,29 @@ function Phase1({ onChange, onValidate }) {
   }, [phase1Data]);
 
 
+  useEffect(() => {
+    if (localStorage.getItem('phase1Data')) {
+      const parsedData = JSON.parse(localStorage.getItem('phase1Data'));
+      setPhaseData(prevState => ({
+        ...prevState,
+        name: {
+          ...prevState.name,
+          value: parsedData.name,
+          valid: true,
+        },
+        email: {
+          ...prevState.email,
+          value: parsedData.email,
+          valid: true,
+        },
+        dob: {
+          ...prevState.dob,
+          value: parsedData.dob,
+          valid: true,
+        },
+      }));
+    }
+  }, []);
 
   return (
     <Form onSubmit={(e) => submitHandler(e)}>

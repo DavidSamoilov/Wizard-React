@@ -98,6 +98,31 @@ function Phase2({ onChange, onValidate }) {
     }
   };
 
+useEffect(() => {
+      if(localStorage.getItem("phase2Data")) {
+      const parsedData = JSON.parse(localStorage.getItem("phase2Data"))
+      setPhase2Data(prevState => ({
+        ...prevState,
+        city: {
+          ...prevState.city,
+          value: parsedData.city,
+          valid: true
+        },
+        street: {
+          ...prevState.street,
+          value: parsedData.street,
+          valid: true
+        },
+        number: {
+          ...prevState.number,
+          value: parsedData.number,
+          valid: true
+        },
+      }));
+    }
+
+}, [])
+
   return (
     <Form>
       <Form.Group controlId="city">

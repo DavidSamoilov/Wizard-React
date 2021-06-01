@@ -60,10 +60,23 @@ const Phase3 = ({ onChange, onValidate }) => {
   }, [formData]);
 
   useEffect(() => {
-    if(!localStorage.getItem("phase2Data")) {
-      history.push('/phase2')
+    if (localStorage.getItem('phase3Data')) {
+      const parsedData = JSON.parse(localStorage.getItem('phase3Data'));
+      setFormData(prevState => ({
+        ...prevState,
+        image: {
+          ...prevState.image,
+          value: parsedData.image,
+          valid: true,
+        },
+        hobbies: {
+          ...prevState.hobbies,
+          value: parsedData.hobbies,
+          valid: true,
+        },
+      }));
     }
-  }, [])
+  }, []);
 
   return (
     <Form>
