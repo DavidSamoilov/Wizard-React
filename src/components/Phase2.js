@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-function Phase2() {
+function Phase2({ onChange, onValidate }) {
   const history = useHistory();
   const goBackToPhase1 = () => history.push("/");
 
@@ -37,13 +37,16 @@ function Phase2() {
     },
   });
 
+  const [phase2Data,setPhase2Data] =useState( {
+    cityInput: cityInput,
+    streetInput: streetInput,
+    numberInput: numberInput,
+  };)
+
+
+  
   const submitToPhase3 = () => {
     // replace with validation
-    const phase2Data = {
-      cityInput: cityInput,
-      streetInput: streetInput,
-      numberInput: numberInput,
-    };
     if (true) {
       localStorage.setItem("phase2Data", JSON.stringify(phase2Data));
 
@@ -56,7 +59,7 @@ function Phase2() {
       <Form.Group controlId="city">
         <Form.Label>City</Form.Label>
         <Form.Control
-          onChange={(e) => setCityInput()}
+          onChange={(e) => onChange(e, phase2Data, setPhaseData)}
           type="text"
           placeholder="Enter City"
           name="city"
@@ -66,7 +69,7 @@ function Phase2() {
       <Form.Group controlId="street">
         <Form.Label>Street</Form.Label>
         <Form.Control
-          onChange={(e) => setStreetInput(e.target.value)}
+          onChange={(e) => onChange(e, phase2Data, setPhaseData)}
           type="text"
           placeholder="Enter Street"
           name="street"
@@ -75,7 +78,7 @@ function Phase2() {
       <Form.Group controlId="number">
         <Form.Label>Number</Form.Label>
         <Form.Control
-          onChange={(e) => setNumberInput(e.target.value)}
+          onChange={(e) => onChange(e, phase2Data, setPhaseData)}
           type="number"
           placeholder="Enter Number"
           name="number"
