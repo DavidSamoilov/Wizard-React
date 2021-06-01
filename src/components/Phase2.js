@@ -65,31 +65,12 @@ function Phase2({ onChange, onValidate }) {
   });
 
   const submitToPhase3 = () => {
-    // replace with validation
     if (true) {
-      let error = false
-      localStorage.setItem("phase2Data", JSON.stringify(phase2Data));
-      for (let input in phase2Data) {
-        console.log(phase2Data[input]);
-        if (!phase2Data[input].validations.pattern.test(phase2Data[input].value)) {
-          setPhase2Data({
-            ...phase2Data,
-            [input]: {
-              ...phase2Data[input],
-              errors:[`${input} is invalid`],
-            },
-          })
-          error = true
-          
-        }
-      }
-      if (error){
-        return 0;
-      }else{
+    
         history.push("/phase3");
       }
     }
-  };
+  ;
 
   return (
     <Form>
