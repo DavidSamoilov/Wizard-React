@@ -6,17 +6,38 @@ function Phase2({ onChange, onValidate }) {
   const history = useHistory();
   const goBackToPhase1 = () => history.push("/");
 
-  const [cityInput, setCityInput] = useState({
-    city: {
-      value: "",
-      errors: [],
-      validations: {
-        required: true,
-        pattern: "/^.{1,35}$/",
-      },
-    },
-  });
-  const [streetInput, setStreetInput] = useState({
+  // const [cityInput, setCityInput] = useState({
+  //   city: {
+  //     value: "",
+  //     errors: [],
+  //     validations: {
+  //       required: true,
+  //       pattern: "/^.{1,35}$/",
+  //     },
+  //   },
+  // });
+  // const [streetInput, setStreetInput] = useState({
+  //   street: {
+  //     value: "",
+  //     errors: [],
+  //     validations: {
+  //       required: true,
+  //       pattern: "/^.{1,35}$/",
+  //     },
+  //   },
+  // });
+  // const [numberInput, setNumberInput] = useState({
+  //   number: {
+  //     value: "",
+  //     errors: [],
+  //     validations: {
+  //       required: true,
+  //       pattern: "^[1-9][0-9]*$",
+  //     },
+  //   },
+  // });
+
+  const [phase2Data, setPhase2Data] = useState({
     street: {
       value: "",
       errors: [],
@@ -25,8 +46,14 @@ function Phase2({ onChange, onValidate }) {
         pattern: "/^.{1,35}$/",
       },
     },
-  });
-  const [numberInput, setNumberInput] = useState({
+    city: {
+      value: "",
+      errors: [],
+      validations: {
+        required: true,
+        pattern: "/^.{1,35}$/",
+      },
+    },
     number: {
       value: "",
       errors: [],
@@ -37,36 +64,6 @@ function Phase2({ onChange, onValidate }) {
     },
   });
 
-  const [phase2Data,setPhase2Data] =useState( {
-    
-      street: {
-        value: "",
-        errors: [],
-        validations: {
-          required: true,
-          pattern: "/^.{1,35}$/"
-        }
-      },
-        city: {
-          value: "",
-          errors: [],
-          validations: {
-            required: true,
-            pattern: "/^.{1,35}$/"
-          }
-        },
-      number: {
-        value: "",
-        errors: [],
-        validations: {
-          required: true,
-          pattern: "^[1-9][0-9]*$"
-        }
-      }}
-  )
-
-
-  
   const submitToPhase3 = () => {
     // replace with validation
     if (true) {
@@ -82,6 +79,7 @@ function Phase2({ onChange, onValidate }) {
         <Form.Label>City</Form.Label>
         <Form.Control
           onChange={(e) => onChange(e, phase2Data, setPhase2Data)}
+          onBlur={(e) => onValidate(e, phase2Data, setPhase2Data)}
           type="text"
           placeholder="Enter City"
           name="city"
@@ -92,6 +90,7 @@ function Phase2({ onChange, onValidate }) {
         <Form.Label>Street</Form.Label>
         <Form.Control
           onChange={(e) => onChange(e, phase2Data, setPhase2Data)}
+          onBlur={(e) => onValidate(e, phase2Data, setPhase2Data)}
           type="text"
           placeholder="Enter Street"
           name="street"
@@ -101,6 +100,7 @@ function Phase2({ onChange, onValidate }) {
         <Form.Label>Number</Form.Label>
         <Form.Control
           onChange={(e) => onChange(e, phase2Data, setPhase2Data)}
+          onBlur={(e) => onValidate(e, phase2Data, setPhase2Data)}
           type="number"
           placeholder="Enter Number"
           name="number"
