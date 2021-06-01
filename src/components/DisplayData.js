@@ -1,5 +1,6 @@
 import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
-
+import {useEffect} from 'react'
+import {useLocation} from 'react-router-dom'
 const user = {
     fullName: 'hello goodbye',
     email: 'lala@gmail.com',
@@ -12,6 +13,12 @@ const user = {
 }
 
 function DisplayData() {
+    const location = useLocation()
+    
+    useEffect(() => {
+        console.log(location)
+
+    }, [])
     return <>
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={`${user.img}`} />
