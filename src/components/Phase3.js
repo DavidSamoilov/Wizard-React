@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import ErrorMessages from './ErrorMessages';
 
 const Phase3 = ({ onChange, onValidate }) => {
+  const [formValid, setFormValid] = useState(false);
   const [formData, setFormData] = useState({
     image: {
       value: '',
       errors: [],
+      valid: false,
       validations: {
         required: true,
-        pattern:
-          '/^(?:(?:https?|ftp)://)(?:S+(?::S*)?@)?(?:(?!(?:10|127)(?:.d{1,3}){3})(?!(?:169.254|192.168)(?:.d{1,3}){2})(?!172.(?:1[6-9]|2d|3[0-1])(?:.d{1,3}){2})(?:[1-9]d?|1dd|2[01]d|22[0-3])(?:.(?:1?d{1,2}|2[0-4]d|25[0-5])){2}(?:.(?:[1-9]d?|1dd|2[0-4]d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:.(?:[a-z\u00a1-\uffff]{2,})).?)(?::d{2,5})?(?:[/?#]S*)?$/i',
+        pattern: /(https?:\/\/.*\.(?:png|jpg))/i,
       },
     },
 
     hobbies: {
       value: '',
       errors: [],
+      valid: false,
       validations: {
-        required: false,
+        required: true,
       },
     },
   });
@@ -32,8 +34,28 @@ const Phase3 = ({ onChange, onValidate }) => {
 
   const submitHandler = e => {
     e.preventDefault();
-    console.log(formData);
+
+    for (const input in formData) {
+      onValidate(
+        { target: { name: [input], value: formData[input].value } },
+        formData,
+        setFormData
+      );
+    }
+    if (formValid) {
+      console.log('ok');
+    }
   };
+
+  useEffect(() => {
+    for (const input in formData) {
+      if (!formData[input].valid) {
+        setFormValid(false);
+        return;
+      }
+    }
+    setFormValid(true);
+  }, [formData]);
 
   return (
     <Form>
