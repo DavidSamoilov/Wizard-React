@@ -69,11 +69,11 @@ function Phase2({ onChange, onValidate }) {
   useEffect(() => {
     for (const input in phase2Data) {
       if (!phase2Data[input].valid) {
-        setFormValid(false);
+        setFormValid(prevState => !prevState);
         return;
       }
     }
-    setFormValid(true);
+    setFormValid(prevState => !prevState);
   }, [phase2Data]);
 
   const submitHandler = (e) => {
