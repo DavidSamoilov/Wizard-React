@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-
+import ErrorMessages from "./ErrorMessages"
 function Phase2({ onChange, onValidate }) {
   const history = useHistory();
   const goBackToPhase1 = () => history.push("/");
@@ -84,6 +84,7 @@ function Phase2({ onChange, onValidate }) {
           placeholder="Enter City"
           name="city"
         />
+        <ErrorMessages errors={phase2Data.city.errors} />
       </Form.Group>
 
       <Form.Group controlId="street">
@@ -95,6 +96,7 @@ function Phase2({ onChange, onValidate }) {
           placeholder="Enter Street"
           name="street"
         />
+        <ErrorMessages errors={phase2Data.street.errors} />
       </Form.Group>
       <Form.Group controlId="number">
         <Form.Label>Number</Form.Label>
@@ -105,6 +107,7 @@ function Phase2({ onChange, onValidate }) {
           placeholder="Enter Number"
           name="number"
         />
+        <ErrorMessages errors={phase2Data.number.errors} />
       </Form.Group>
       <Button variant="primary mr-2" onClick={goBackToPhase1}>
         Back
