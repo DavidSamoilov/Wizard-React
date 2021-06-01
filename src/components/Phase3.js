@@ -21,7 +21,7 @@ const Phase3 = ({ onChange, onValidate }) => {
       errors: [],
       valid: false,
       validations: {
-        required: true,
+        required: false,
       },
     },
   });
@@ -43,7 +43,7 @@ const Phase3 = ({ onChange, onValidate }) => {
       );
     }
     if (formValid) {
-      console.log('ok');
+      localStorage.setItem("phase3", JSON.stringify({image: formData.image.value, hobbies: formData.hobbies.value}))
     }
   };
 
@@ -56,6 +56,12 @@ const Phase3 = ({ onChange, onValidate }) => {
     }
     setFormValid(true);
   }, [formData]);
+
+  useEffect(() => {
+    if(!localStorage.getItem("phase2Data")) {
+      history.push('/phase2')
+    }
+  }, [])
 
   return (
     <Form>

@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import Phase1 from './components/Phase1';
 import Phase2 from './components/Phase2';
 import Phase3 from './components/Phase3';
+import DisplayData from './components/DisplayData';
 import './App.css';
 function App() {
   const inputChangeHandler = (
@@ -56,6 +57,9 @@ function App() {
           </Route>
           <Route path='/Phase3'>
             <Phase3 onChange={inputChangeHandler} onValidate={validateInput} />
+          </Route>
+          <Route path='/home'>
+            <DisplayData />
           </Route>
         </Switch>
       </Router>
