@@ -87,6 +87,7 @@ function Phase2({ onChange, onValidate }) {
       );
     }
     if (formValid) {
+      localStorage.setItem("Phase2Data", JSON.stringify(phase2Data));
       history.push("/phase3");
     }
   };
