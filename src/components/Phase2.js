@@ -93,7 +93,7 @@ function Phase2({ onChange, onValidate }) {
         number: phase2Data.number.value,
       };
 
-      localStorage.setItem("Phase2Data", JSON.stringify(formValues));
+      localStorage.setItem("phase2Data", JSON.stringify(formValues));
       history.push("/Phase3");
     }
   };
