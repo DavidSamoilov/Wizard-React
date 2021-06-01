@@ -69,11 +69,11 @@ function Phase2({ onChange, onValidate }) {
   useEffect(() => {
     for (const input in phase2Data) {
       if (!phase2Data[input].valid) {
-        setFormValid(prevState => !prevState);
+        setFormValid(false);
         return;
       }
     }
-    setFormValid(prevState => !prevState);
+    setFormValid(true);
   }, [phase2Data]);
 
   const submitHandler = (e) => {
@@ -88,7 +88,7 @@ function Phase2({ onChange, onValidate }) {
     }
     if (formValid) {
       localStorage.setItem("Phase2Data", JSON.stringify(phase2Data));
-      history.push("/phase3");
+      history.push("/Phase3");
     }
   };
 
