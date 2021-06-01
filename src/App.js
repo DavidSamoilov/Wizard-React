@@ -51,10 +51,10 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' exact>
-            <Phase1 />
+            <Phase1 onChange={inputChangeHandler} onValidate={validateInput} />
           </Route>
           <Route path='/Phase2'>
-            <Phase2 />
+            <Phase2 onChange={inputChangeHandler} onValidate={validateInput} />
           </Route>
           <Route path='/Phase3'>
             <Phase3 onChange={inputChangeHandler} onValidate={validateInput} />
