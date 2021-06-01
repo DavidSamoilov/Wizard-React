@@ -38,10 +38,32 @@ function Phase2({ onChange, onValidate }) {
   });
 
   const [phase2Data,setPhase2Data] =useState( {
-    cityInput: cityInput,
-    streetInput: streetInput,
-    numberInput: numberInput,
-  };)
+    
+      street: {
+        value: "",
+        errors: [],
+        validations: {
+          required: true,
+          pattern: "/^.{1,35}$/"
+        }
+      },
+        city: {
+          value: "",
+          errors: [],
+          validations: {
+            required: true,
+            pattern: "/^.{1,35}$/"
+          }
+        },
+      number: {
+        value: "",
+        errors: [],
+        validations: {
+          required: true,
+          pattern: "^[1-9][0-9]*$"
+        }
+      }}
+  )
 
 
   
@@ -59,7 +81,7 @@ function Phase2({ onChange, onValidate }) {
       <Form.Group controlId="city">
         <Form.Label>City</Form.Label>
         <Form.Control
-          onChange={(e) => onChange(e, phase2Data, setPhaseData)}
+          onChange={(e) => onChange(e, phase2Data, setPhase2Data)}
           type="text"
           placeholder="Enter City"
           name="city"
@@ -69,7 +91,7 @@ function Phase2({ onChange, onValidate }) {
       <Form.Group controlId="street">
         <Form.Label>Street</Form.Label>
         <Form.Control
-          onChange={(e) => onChange(e, phase2Data, setPhaseData)}
+          onChange={(e) => onChange(e, phase2Data, setPhase2Data)}
           type="text"
           placeholder="Enter Street"
           name="street"
@@ -78,7 +100,7 @@ function Phase2({ onChange, onValidate }) {
       <Form.Group controlId="number">
         <Form.Label>Number</Form.Label>
         <Form.Control
-          onChange={(e) => onChange(e, phase2Data, setPhaseData)}
+          onChange={(e) => onChange(e, phase2Data, setPhase2Data)}
           type="number"
           placeholder="Enter Number"
           name="number"
