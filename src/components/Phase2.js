@@ -99,6 +99,9 @@ function Phase2({ onChange, onValidate }) {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem('phase1Data')) {
+      history.push('/');
+    }
     if (localStorage.getItem('phase2Data')) {
       const parsedData = JSON.parse(localStorage.getItem('phase2Data'));
       setPhase2Data(prevState => ({
@@ -119,8 +122,6 @@ function Phase2({ onChange, onValidate }) {
           valid: true,
         },
       }));
-    } else {
-      history.push('/phase1');
     }
   }, []);
 
