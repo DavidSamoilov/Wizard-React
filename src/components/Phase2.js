@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import ErrorMessages from "./ErrorMessages"
+import ErrorMessages from "./ErrorMessages";
 function Phase2({ onChange, onValidate }) {
   const history = useHistory();
   const goBackToPhase1 = () => history.push("/");
@@ -43,7 +43,7 @@ function Phase2({ onChange, onValidate }) {
       errors: [],
       validations: {
         required: true,
-        pattern: "/^.{1,35}$/",
+        pattern: /^.{1,35}$/,
       },
     },
     city: {
@@ -51,7 +51,7 @@ function Phase2({ onChange, onValidate }) {
       errors: [],
       validations: {
         required: true,
-        pattern: "/^.{1,35}$/",
+        pattern: /^.{1,35}$/,
       },
     },
     number: {
