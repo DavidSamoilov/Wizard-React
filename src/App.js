@@ -7,6 +7,47 @@ import Phase2 from './components/Phase2';
 import Phase3 from './components/Phase3';
 import './App.css';
 function App() {
+  const inputChangeHandler = (
+    { target: { name, value } },
+    formState,
+    setFormState
+  ) => {
+    setFormState({
+      ...formState,
+      [name]: {
+        ...formState[name],
+        value: value,
+      },
+    });
+  };
+
+  const validateInput = (
+    { target: { name, value } },
+    formState,
+    setFormState
+  ) => {
+    const newErrors = [];
+
+    if (!value && formState[name].validations.required) {
+      newErrors.push(`${name} is required!`);
+    }
+
+    if (
+      value &&
+      !formState[name].value.match(formState[name].validations.pattern)
+    ) {
+      newErrors.push(`Invalid ${name} value!`);
+    }
+
+    setFormState({
+      ...formState,
+      [name]: {
+        ...formState[name],
+        errors: newErrors,
+      },
+    });
+  };
+
   return (
     <Container>
       <Router>
@@ -18,7 +59,7 @@ function App() {
             <Phase2 />
           </Route>
           <Route path='/Phase3'>
-            <Phase3 />
+            <Phase3 onChange={inputChangeHandler} onValidate={validateInput} />
           </Route>
         </Switch>
       </Router>
