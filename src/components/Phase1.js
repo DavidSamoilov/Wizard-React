@@ -36,7 +36,8 @@ function Phase1({ onChange, onValidate }) {
   const handleClick = () => {
 
     if (formValid) {
-      localStorage.setItem('Phase1', JSON.stringify(phase1Data));
+      const formValues = { name: phase1Data.name.value, email: phase1Data.email.value, dob: phase1Data.dob.value };
+      localStorage.setItem('phase1', JSON.stringify(formValues));
       history.push('/Phase2')
     }
   }
@@ -71,6 +72,7 @@ function Phase1({ onChange, onValidate }) {
       <Form.Group className='mb-3' controlId='formName'>
         <Form.Label>Name</Form.Label>
         <Form.Control type='text' name='name' placeholder='Enter Name'
+          value={phase1.name.value}
           onChange={(e) => onChange(e, phase1Data, setPhaseData)}
           onBlur={(e) => onValidate(e, phase1Data, setPhaseData)} />
         <ErrorMessages errors={phase1Data.name.errors} />
@@ -79,6 +81,7 @@ function Phase1({ onChange, onValidate }) {
       <Form.Group className='mb-3' controlId='formEmail'>
         <Form.Label>Email address</Form.Label>
         <Form.Control type='email' placeholder='Enter email' name='email'
+          value={phase1.email.value}
           onChange={(e) => onChange(e, phase1Data, setPhaseData)}
           onBlur={(e) => onValidate(e, phase1Data, setPhaseData)} />
         <ErrorMessages errors={phase1Data.email.errors} />
@@ -87,6 +90,7 @@ function Phase1({ onChange, onValidate }) {
       <Form.Group controlId='formFile' className='mb-3'>
         <Form.Label>Date of Birth:</Form.Label>
         <Form.Control type='date' name='dob'
+          value={phase1.dob.value}
           onChange={(e) => onChange(e, phase1Data, setPhaseData)}
           onBlur={(e) => onValidate(e, phase1Data, setPhaseData)} />
         <ErrorMessages errors={phase1Data.dob.errors} />
