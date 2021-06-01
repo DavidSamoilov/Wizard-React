@@ -45,7 +45,7 @@ const Phase3 = ({ onChange, onValidate }) => {
     if (formValid) {
       const formValues = {image: formData.image.value, hobbies: formData.hobbies.value}
       localStorage.setItem("phase3", JSON.stringify(formValues))
-      history.push({pathname:'/home', formValues})
+      history.push('/home')
     }
   };
 
@@ -60,9 +60,9 @@ const Phase3 = ({ onChange, onValidate }) => {
   }, [formData]);
 
   useEffect(() => {
-    // if(!localStorage.getItem("phase2Data")) {
-    //   history.push('/phase2')
-    // }
+    if(!localStorage.getItem("phase2")) {
+      history.push('/phase2')
+    }
   }, [])
 
   return (
@@ -73,6 +73,7 @@ const Phase3 = ({ onChange, onValidate }) => {
           type='text'
           placeholder='Enter Image URL'
           name='image'
+          value={formData.image.value}
           onChange={e => onChange(e, formData, setFormData)}
           onBlur={e => onValidate(e, formData, setFormData)}
         />
@@ -84,6 +85,7 @@ const Phase3 = ({ onChange, onValidate }) => {
           type='text'
           placeholder='Enter hobbies'
           name='hobbies'
+          value={formData.hobbies.value}
           onChange={e => onChange(e, formData, setFormData)}
           onBlur={e => onValidate(e, formData, setFormData)}
         />
