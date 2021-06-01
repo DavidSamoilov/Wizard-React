@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-const Phase3 = () => {
+const Phase3 = ({ onChange, onValidate }) => {
   const [formData, setFormData] = useState({
     image: {
       value: '',
@@ -31,17 +31,30 @@ const Phase3 = () => {
 
   const submitHandler = e => {
     e.preventDefault();
+    console.log(formData);
   };
 
   return (
     <Form>
       <Form.Group controlId='formImage'>
         <Form.Label>Image</Form.Label>
-        <Form.Control type='text' placeholder='Enter Image URL' />
+        <Form.Control
+          type='text'
+          placeholder='Enter Image URL'
+          name='image'
+          onChange={e => onChange(e, formData, setFormData)}
+          onBlur={e => onValidate(e, formData, setFormData)}
+        />
       </Form.Group>
       <Form.Group controlId='formHobbies'>
         <Form.Label>Hobbies</Form.Label>
-        <Form.Control type='text' placeholder='Enter hobbies' />
+        <Form.Control
+          type='text'
+          placeholder='Enter hobbies'
+          name='hobbies'
+          onChange={e => onChange(e, formData, setFormData)}
+          onBlur={e => onValidate(e, formData, setFormData)}
+        />
       </Form.Group>
       <Button
         variant='primary'
