@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import ErrorMessages from './ErrorMessages';
 
 const Phase3 = ({ onChange, onValidate }) => {
   const [formData, setFormData] = useState({
@@ -45,6 +46,7 @@ const Phase3 = ({ onChange, onValidate }) => {
           onChange={e => onChange(e, formData, setFormData)}
           onBlur={e => onValidate(e, formData, setFormData)}
         />
+        <ErrorMessages errors={formData.image.errors} />
       </Form.Group>
       <Form.Group controlId='formHobbies'>
         <Form.Label>Hobbies</Form.Label>
