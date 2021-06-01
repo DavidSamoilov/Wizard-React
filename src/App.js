@@ -30,20 +30,18 @@ function App() {
 
     if (!value && formState[name].validations.required) {
       newErrors.push(`${name} is required!`);
-    } else if (
-      value &&
-      !formState[name].value.match(formState[name].validations.pattern)
-    ) {
+    } else if (value && !value.match(formState[name].validations.pattern)) {
       newErrors.push(`Invalid ${name} value!`);
     }
 
-    setFormState({
-      ...formState,
+    setFormState(prevState => ({
+      ...prevState,
       [name]: {
-        ...formState[name],
+        ...prevState[name],
         errors: newErrors,
+        valid: !newErrors.length,
       },
-    });
+    }));
   };
 
   return (
