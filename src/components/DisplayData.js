@@ -1,4 +1,4 @@
-import { Card, ListGroup } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const user = {
     fullName: 'hello goodbye',
@@ -23,7 +23,7 @@ function DisplayData() {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroupItem>{`${user.email}`}</ListGroupItem>
-                <ListGroupItem>{`${user.city} ${street} ${user.streetNumebr}`}</ListGroupItem>
+                <ListGroupItem>{`${user.city} ${user.street} ${user.streetNumebr}`}</ListGroupItem>
             </ListGroup>
         </Card>
     </>
