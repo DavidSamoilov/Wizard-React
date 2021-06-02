@@ -59,12 +59,14 @@ function Phase1({ onChange, onValidate, formData }) {
 
       <Form.Group controlId='formFile' className='mb-3'>
         <Form.Label>Date of Birth:</Form.Label>
+
         <Form.Control
-          type='date'
+          type='text'
           name='dob'
           value={formData.dob.value}
           onChange={onChange}
           onBlur={onValidate}
+          placeholder="dd-mm-yy"
         />
         <ErrorMessages errors={formData.dob.errors} />
       </Form.Group>
