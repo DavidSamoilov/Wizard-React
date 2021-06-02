@@ -58,7 +58,7 @@ function Phase1({ onChange, onValidate, formData }) {
       </Form.Group>
 
       <Form.Group controlId='formFile' className='mb-3'>
-        <Form.Label>Date of Birth:</Form.Label>
+        <Form.Label>Date of Birth</Form.Label>
 
         <Form.Control
           type='text'

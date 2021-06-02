@@ -21,13 +21,14 @@ function DisplayData({ userDetails }) {
   return (
     <>
       <Card style={{ width: '18rem', margin: '1rem auto' }}>
-        <Card.Img variant='top' src={`${user.image}`} />
+        <div className="rounded-img">
+          <Card.Img variant='top' src={`${user.image}`} />
+        </div>
         <Card.Body>
           <Card.Title>{`${user.name}`}</Card.Title>
           <Card.Text>
-            {`${user.name} lives in ${user.city} ${
-              user.hobbies && `and likes ${user.hobbies}`
-            }`}
+            {`${user.name} lives in ${user.city} ${user.hobbies && `and likes ${user.hobbies}`
+              }`}
           </Card.Text>
         </Card.Body>
         <ListGroup className='list-group-flush'>
@@ -37,7 +38,7 @@ function DisplayData({ userDetails }) {
       </Card>
 
       <div className='text-center'>
-        <Button variant='primary' onClick={() => history.push('/phase3')}>
+        <Button variant='primary mr-2' onClick={() => history.push('/phase3')}>
           Back
         </Button>
       </div>
