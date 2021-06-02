@@ -7,11 +7,6 @@ function Phase1({ onChange, onValidate, formData }) {
   const history = useHistory();
   const [formValid, setFormValid] = useState(false);
 
-  if(localStorage.getItem("phase3Valid")) {
-    history.push('/home')
-  }
-
-
   const submitHandler = e => {
     e.preventDefault();
     onValidate({ target: { name: 'name', value: formData.name.value } });

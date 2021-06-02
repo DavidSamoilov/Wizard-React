@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 import Phase1 from './components/Phase1';
@@ -7,76 +12,74 @@ import Phase2 from './components/Phase2';
 import Phase3 from './components/Phase3';
 import DisplayData from './components/DisplayData';
 import './App.css';
+
+const validations = {
+  name: { required: true, pattern: /[a-zA-Z]{2,}( )[a-zA-Z]{2,}/ },
+  email: {
+    required: true,
+    pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+  },
+  dob: {
+    required: true,
+    pattern: /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{2}$/,
+  },
+  city: {
+    required: true,
+    pattern: /^.{1,35}$/,
+  },
+  street: {
+    required: true,
+    pattern: /^.{1,35}$/,
+  },
+  number: {
+    required: true,
+    pattern: '^[0-9][0-9]*$',
+  },
+  image: {
+    required: true,
+    pattern: /(https?:\/\/.*\.(?:png|jpg))/i,
+  },
+};
+
 function App() {
   const [formData, setFormData] = useState({
     name: {
       value: '',
       errors: [],
       valid: false,
-      validations: {
-        required: true,
-        pattern: /[a-zA-Z]{2,}( )[a-zA-Z]{2,}/,
-      },
     },
     email: {
       value: '',
       errors: [],
       valid: false,
-      validations: {
-        required: true,
-        pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      },
     },
     dob: {
       value: '',
       errors: [],
       valid: false,
-      validations: {
-        required: true,
-        pattern: /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{2}$/
-      },
     },
     street: {
       value: '',
       errors: [],
-      validations: {
-        required: true,
-        pattern: /^.{1,35}$/,
-      },
     },
     city: {
       value: '',
       errors: [],
-      validations: {
-        required: true,
-        pattern: /^.{1,35}$/,
-      },
     },
     number: {
       value: '',
       errors: [],
-      validations: {
-        required: true,
-        pattern: '^[0-9][0-9]*$',
-      },
     },
     image: {
       value: '',
       errors: [],
       valid: false,
-      validations: {
-        required: true,
-        pattern: /(https?:\/\/.*\.(?:png|jpg))/i,
-      },
     },
 
     hobbies: {
       value: '',
       errors: [],
       valid: false,
-      validations: {
-        required: false,
-      },
     },
   });
 
@@ -84,7 +87,6 @@ function App() {
     if (localStorage.getItem('formData')) {
       setFormData(JSON.parse(localStorage.getItem('formData')));
     }
-
   }, []);
 
   const inputChangeHandler = ({ target: { name, value } }) => {
@@ -100,9 +102,9 @@ function App() {
   const validateInput = ({ target: { name, value } }) => {
     const newErrors = [];
 
-    if (!value && formData[name].validations.required) {
+    if (!value && validations[name].required) {
       newErrors.push(`${name} is required!`);
-    } else if (value && !value.match(formData[name].validations.pattern)) {
+    } else if (value && !value.match(validations[name].pattern)) {
       newErrors.push(`Invalid ${name} value!`);
     }
 

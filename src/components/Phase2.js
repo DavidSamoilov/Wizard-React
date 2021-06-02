@@ -5,7 +5,11 @@ import ErrorMessages from './ErrorMessages';
 function Phase2({ onChange, onValidate, formData }) {
   const [formValid, setFormValid] = useState(false);
   const history = useHistory();
+  
   const goBackToPhase1 = () => history.push('/');
+  if (!localStorage.getItem('phase1Valid')) {
+    history.push('/');
+  }
 
   useEffect(() => {
     if (
@@ -33,12 +37,6 @@ function Phase2({ onChange, onValidate, formData }) {
       history.push('/Phase3');
     }
   };
-
-  useEffect(() => {
-    if (!localStorage.getItem('phase1Valid')) {
-      history.push('/');
-    }
-  }, []);
 
   return (
     <Form>

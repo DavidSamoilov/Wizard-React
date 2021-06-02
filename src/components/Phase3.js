@@ -7,6 +7,7 @@ const Phase3 = ({ onChange, onValidate, formData }) => {
   const [formValid, setFormValid] = useState(false);
 
   const history = useHistory();
+  
   if (!localStorage.getItem('phase2Valid')) {
     history.push('/phase2');
   }
