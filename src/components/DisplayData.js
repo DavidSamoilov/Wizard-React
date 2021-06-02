@@ -33,12 +33,13 @@ function DisplayData({ userDetails }) {
         </Card.Body>
         <ListGroup className='list-group-flush'>
           <ListGroupItem>{`${user.email}`}</ListGroupItem>
+          <ListGroupItem>{`${user.dob}`}</ListGroupItem>
           <ListGroupItem>{`${user.city} ${user.street} ${user.number}`}</ListGroupItem>
         </ListGroup>
       </Card>
 
       <div className='text-center'>
-        <Button variant='primary mr-2' onClick={() => history.push('/phase3')}>
+        <Button variant='primary' onClick={() => history.push('/phase3')}>
           Back
         </Button>
       </div>
