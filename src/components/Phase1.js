@@ -4,9 +4,13 @@ import { useState, useEffect } from 'react';
 import ErrorMessages from './ErrorMessages';
 
 function Phase1({ onChange, onValidate, formData }) {
+  const history = useHistory();
   const [formValid, setFormValid] = useState(false);
 
-  const history = useHistory();
+  if(localStorage.getItem("phase3Valid")) {
+    history.push('/home')
+  }
+
 
   const submitHandler = e => {
     e.preventDefault();

@@ -3,32 +3,32 @@ import { useHistory } from 'react-router-dom';
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 
 function DisplayData({ userDetails }) {
-  const [user, setUser] = useState({});
+  if (!localStorage.getItem('phase3Valid')) {
+    history.push('/phase3');
+  }
+  const [user, setUser] = useState(userDetails);
   const history = useHistory();
 
   useEffect(() => {
-    if (!localStorage.getItem('phase3Valid')) {
-      history.push('/phase3');
-    }
-
     const user = {};
     for (const inputName in userDetails) {
       user[inputName] = userDetails[inputName].value;
     }
     setUser(user);
-  }, []);
+  }, [userDetails]);
 
   return (
     <>
       <Card style={{ width: '18rem', margin: '1rem auto' }}>
-        <div className="rounded-img">
+        <div className='rounded-img'>
           <Card.Img variant='top' src={`${user.image}`} />
         </div>
         <Card.Body>
           <Card.Title>{`${user.name}`}</Card.Title>
           <Card.Text>
-            {`${user.name} lives in ${user.city} ${user.hobbies && `and likes ${user.hobbies}`
-              }`}
+            {`${user.name} lives in ${user.city} ${
+              user.hobbies && `and likes ${user.hobbies}`
+            }`}
           </Card.Text>
         </Card.Body>
         <ListGroup className='list-group-flush'>

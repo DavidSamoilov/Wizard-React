@@ -7,7 +7,9 @@ const Phase3 = ({ onChange, onValidate, formData }) => {
   const [formValid, setFormValid] = useState(false);
 
   const history = useHistory();
-
+  if (!localStorage.getItem('phase2Valid')) {
+    history.push('/phase2');
+  }
   const goBackHandler = () => {
     history.push('/phase2');
   };
@@ -18,6 +20,7 @@ const Phase3 = ({ onChange, onValidate, formData }) => {
     onValidate({ target: { name: 'image', value: formData.image.value } });
 
     if (formValid) {
+      console.log(formData)
       localStorage.setItem('formData', JSON.stringify(formData));
       localStorage.setItem('phase3Valid', true);
       history.push('/home');
@@ -32,11 +35,6 @@ const Phase3 = ({ onChange, onValidate, formData }) => {
     setFormValid(true);
   }, [formData.image.valid]);
 
-  useEffect(() => {
-    if (!localStorage.getItem('phase2Valid')) {
-      history.push('/phase2');
-    }
-  }, []);
 
   return (
     <Form>

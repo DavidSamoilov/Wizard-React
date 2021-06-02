@@ -84,6 +84,7 @@ function App() {
     if (localStorage.getItem('formData')) {
       setFormData(JSON.parse(localStorage.getItem('formData')));
     }
+
   }, []);
 
   const inputChangeHandler = ({ target: { name, value } }) => {
