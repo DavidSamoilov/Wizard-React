@@ -7,13 +7,6 @@ function Phase1({ onChange, onValidate, formData }) {
   const [formValid, setFormValid] = useState(false);
 
   const history = useHistory();
-  const handleClick = () => {
-    if (formValid) {
-      localStorage.setItem('formData', JSON.stringify(formData));
-      localStorage.setItem('phase1Valid', true);
-      history.push('/Phase2');
-    }
-  };
 
   const submitHandler = e => {
     e.preventDefault();
@@ -34,7 +27,7 @@ function Phase1({ onChange, onValidate, formData }) {
       return;
     }
     setFormValid(true);
-  }, [formData.name.errors, formData.email.errors, formData.dob.errors]);
+  }, [formData.name.valid, formData.email.valid, formData.dob.valid]);
 
   return (
     <Form onSubmit={submitHandler}>

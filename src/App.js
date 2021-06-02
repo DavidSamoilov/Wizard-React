@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 import Phase1 from './components/Phase1';
@@ -140,7 +140,10 @@ function App() {
             />
           </Route>
           <Route path='/home'>
-            <DisplayData userDetails={formData}/>
+            <DisplayData userDetails={formData} />
+          </Route>
+          <Route path='*'>
+            <Redirect to='/home'></Redirect>
           </Route>
         </Switch>
       </Router>

@@ -25,12 +25,12 @@ const Phase3 = ({ onChange, onValidate, formData }) => {
   };
 
   useEffect(() => {
-    if (formData.image.errors.length) {
+    if (!formData.image.valid) {
       setFormValid(false);
       return;
     }
     setFormValid(true);
-  }, [formData.image.errors]);
+  }, [formData.image.valid]);
 
   useEffect(() => {
     if (!localStorage.getItem('phase2Valid')) {

@@ -4,8 +4,6 @@ import { useHistory } from 'react-router-dom';
 import ErrorMessages from './ErrorMessages';
 function Phase2({ onChange, onValidate, formData }) {
   const [formValid, setFormValid] = useState(false);
-
-  console.log(formData);
   const history = useHistory();
   const goBackToPhase1 = () => history.push('/');
 
@@ -20,7 +18,7 @@ function Phase2({ onChange, onValidate, formData }) {
     }
 
     setFormValid(true);
-  }, [formData.city.errors, formData.street.errors, formData.number.errors]);
+  }, [formData.city.valid, formData.street.valid, formData.number.valid]);
 
   const submitHandler = e => {
     e.preventDefault();
@@ -85,7 +83,7 @@ function Phase2({ onChange, onValidate, formData }) {
         Back
       </Button>
       <Button variant='primary ml-2' onClick={submitHandler}>
-        Submit
+        Next
       </Button>
     </Form>
   );
