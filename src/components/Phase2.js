@@ -2,126 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import ErrorMessages from './ErrorMessages';
-function Phase2({ onChange, onValidate }) {
+function Phase2({ onChange, onValidate, formData }) {
   const [formValid, setFormValid] = useState(false);
 
+  console.log(formData);
   const history = useHistory();
   const goBackToPhase1 = () => history.push('/');
 
-  // const [cityInput, setCityInput] = useState({
-  //   city: {
-  //     value: "",
-  //     errors: [],
-  //     validations: {
-  //       required: true,
-  //       pattern: "/^.{1,35}$/",
-  //     },
-  //   },
-  // });
-  // const [streetInput, setStreetInput] = useState({
-  //   street: {
-  //     value: "",
-  //     errors: [],
-  //     validations: {
-  //       required: true,
-  //       pattern: "/^.{1,35}$/",
-  //     },
-  //   },
-  // });
-  // const [numberInput, setNumberInput] = useState({
-  //   number: {
-  //     value: "",
-  //     errors: [],
-  //     validations: {
-  //       required: true,
-  //       pattern: "^[1-9][0-9]*$",
-  //     },
-  //   },
-  // });
-
-  const [phase2Data, setPhase2Data] = useState({
-    street: {
-      value: '',
-      errors: [],
-      validations: {
-        required: true,
-        pattern: /^.{1,35}$/,
-      },
-    },
-    city: {
-      value: '',
-      errors: [],
-      validations: {
-        required: true,
-        pattern: /^.{1,35}$/,
-      },
-    },
-    number: {
-      value: '',
-      errors: [],
-      validations: {
-        required: true,
-        pattern: '^[0-9][0-9]*$',
-      },
-    },
-  });
-
   useEffect(() => {
-    for (const input in phase2Data) {
-      if (!phase2Data[input].valid) {
-        setFormValid(false);
-        return;
-      }
+    if (
+      !formData.city.valid ||
+      !formData.street.valid ||
+      !formData.number.valid
+    ) {
+      setFormValid(false);
+      return;
     }
+
     setFormValid(true);
-  }, [phase2Data]);
+  }, [formData.city.errors, formData.street.errors, formData.number.errors]);
 
   const submitHandler = e => {
     e.preventDefault();
 
-    for (const input in phase2Data) {
-      onValidate(
-        { target: { name: [input], value: phase2Data[input].value } },
-        phase2Data,
-        setPhase2Data
-      );
-    }
-    if (formValid) {
-      const formValues = {
-        city: phase2Data.city.value,
-        street: phase2Data.street.value,
-        number: phase2Data.number.value,
-      };
+    onValidate({ target: { name: 'city', value: formData.city.value } });
+    onValidate({ target: { name: 'street', value: formData.street.value } });
+    onValidate({ target: { name: 'number', value: formData.number.value } });
 
-      localStorage.setItem('phase2Data', JSON.stringify(formValues));
+    if (formValid) {
+      localStorage.setItem('formData', JSON.stringify(formData));
+      localStorage.setItem('phase2Valid', true);
       history.push('/Phase3');
     }
   };
 
   useEffect(() => {
-    if (!localStorage.getItem('phase1Data')) {
+    if (!localStorage.getItem('phase1Valid')) {
       history.push('/');
-    }
-    if (localStorage.getItem('phase2Data')) {
-      const parsedData = JSON.parse(localStorage.getItem('phase2Data'));
-      setPhase2Data(prevState => ({
-        ...prevState,
-        city: {
-          ...prevState.city,
-          value: parsedData.city,
-          valid: true,
-        },
-        street: {
-          ...prevState.street,
-          value: parsedData.street,
-          valid: true,
-        },
-        number: {
-          ...prevState.number,
-          value: parsedData.number,
-          valid: true,
-        },
-      }));
     }
   }, []);
 
@@ -130,39 +47,39 @@ function Phase2({ onChange, onValidate }) {
       <Form.Group controlId='city'>
         <Form.Label>City</Form.Label>
         <Form.Control
-          onChange={e => onChange(e, phase2Data, setPhase2Data)}
-          onBlur={e => onValidate(e, phase2Data, setPhase2Data)}
+          onChange={onChange}
+          onBlur={onValidate}
           type='text'
           placeholder='Enter City'
-          value={phase2Data.city.value}
+          value={formData.city.value}
           name='city'
         />
-        <ErrorMessages errors={phase2Data.city.errors} />
+        <ErrorMessages errors={formData.city.errors} />
       </Form.Group>
 
       <Form.Group controlId='street'>
         <Form.Label>Street</Form.Label>
         <Form.Control
-          onChange={e => onChange(e, phase2Data, setPhase2Data)}
-          onBlur={e => onValidate(e, phase2Data, setPhase2Data)}
+          onChange={onChange}
+          onBlur={onValidate}
           type='text'
           placeholder='Enter Street'
           name='street'
-          value={phase2Data.street.value}
+          value={formData.street.value}
         />
-        <ErrorMessages errors={phase2Data.street.errors} />
+        <ErrorMessages errors={formData.street.errors} />
       </Form.Group>
       <Form.Group controlId='number'>
         <Form.Label>Number</Form.Label>
         <Form.Control
-          onChange={e => onChange(e, phase2Data, setPhase2Data)}
-          onBlur={e => onValidate(e, phase2Data, setPhase2Data)}
+          onChange={onChange}
+          onBlur={onValidate}
           type='number'
           placeholder='Enter Number'
           name='number'
-          value={phase2Data.number.value}
+          value={formData.number.value}
         />
-        <ErrorMessages errors={phase2Data.number.errors} />
+        <ErrorMessages errors={formData.number.errors} />
       </Form.Group>
       <Button variant='primary mr-2' onClick={goBackToPhase1}>
         Back

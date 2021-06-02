@@ -3,28 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import ErrorMessages from './ErrorMessages';
 
-const Phase3 = ({ onChange, onValidate }) => {
+const Phase3 = ({ onChange, onValidate, formData }) => {
   const [formValid, setFormValid] = useState(false);
-  const [formData, setFormData] = useState({
-    image: {
-      value: '',
-      errors: [],
-      valid: false,
-      validations: {
-        required: true,
-        pattern: /(https?:\/\/.*\.(?:png|jpg))/i,
-      },
-    },
-
-    hobbies: {
-      value: '',
-      errors: [],
-      valid: false,
-      validations: {
-        required: false,
-      },
-    },
-  });
 
   const history = useHistory();
 
@@ -35,52 +15,26 @@ const Phase3 = ({ onChange, onValidate }) => {
   const submitHandler = e => {
     e.preventDefault();
 
-    for (const input in formData) {
-      onValidate(
-        { target: { name: [input], value: formData[input].value } },
-        formData,
-        setFormData
-      );
-    }
+    onValidate({ target: { name: 'image', value: formData.image.value } });
+
     if (formValid) {
-      const formValues = {
-        image: formData.image.value,
-        hobbies: formData.hobbies.value,
-      };
-      localStorage.setItem('phase3Data', JSON.stringify(formValues));
+      localStorage.setItem('formData', JSON.stringify(formData));
+      localStorage.setItem('phase3Valid', true);
       history.push('/home');
     }
   };
 
   useEffect(() => {
-    for (const input in formData) {
-      if (!formData[input].valid) {
-        setFormValid(prevState => !prevState);
-        return;
-      }
+    if (formData.image.errors.length) {
+      setFormValid(false);
+      return;
     }
-    setFormValid(prevState => !prevState);
-  }, [formData]);
+    setFormValid(true);
+  }, [formData.image.errors]);
 
   useEffect(() => {
-    if (!localStorage.getItem('phase2Data')) {
+    if (!localStorage.getItem('phase2Valid')) {
       history.push('/phase2');
-    }
-    if (localStorage.getItem('phase3Data')) {
-      const parsedData = JSON.parse(localStorage.getItem('phase3Data'));
-      setFormData(prevState => ({
-        ...prevState,
-        image: {
-          ...prevState.image,
-          value: parsedData.image,
-          valid: true,
-        },
-        hobbies: {
-          ...prevState.hobbies,
-          value: parsedData.hobbies,
-          valid: true,
-        },
-      }));
     }
   }, []);
 
@@ -93,8 +47,8 @@ const Phase3 = ({ onChange, onValidate }) => {
           placeholder='Enter Image URL'
           name='image'
           value={formData.image.value}
-          onChange={e => onChange(e, formData, setFormData)}
-          onBlur={e => onValidate(e, formData, setFormData)}
+          onChange={onChange}
+          onBlur={onValidate}
         />
         <ErrorMessages errors={formData.image.errors} />
       </Form.Group>
@@ -105,8 +59,7 @@ const Phase3 = ({ onChange, onValidate }) => {
           placeholder='Enter hobbies'
           name='hobbies'
           value={formData.hobbies.value}
-          onChange={e => onChange(e, formData, setFormData)}
-          onBlur={e => onValidate(e, formData, setFormData)}
+          onChange={onChange}
         />
       </Form.Group>
       <Button
