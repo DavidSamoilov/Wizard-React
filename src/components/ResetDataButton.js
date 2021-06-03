@@ -1,11 +1,14 @@
 import Button from 'react-bootstrap/Button'
 
-const ResetDataButton = () => {
+const ResetDataButton = ({text,onClick}) => {   
+
     return (
-        <div>
-            <Button onClick={()=>onClick()}>
-                Reset Form</Button>
-        </div>
+        <span>
+            <Button
+            onClick={()=>onClick()}>
+                {text}
+                </Button>
+        </span>
     )
 }
 

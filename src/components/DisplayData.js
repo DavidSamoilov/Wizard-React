@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import ResetDataButton from './ResetDataButton';
 
 function DisplayData({ userDetails }) {
   if (!localStorage.getItem('phase3Valid')) {
@@ -16,6 +17,13 @@ function DisplayData({ userDetails }) {
     }
     setUser(user);
   }, [userDetails]);
+
+  // Reset local storage and returns user to phase1 of form
+  const clearLocalStorage = ()=>{
+    localStorage.clear();
+    history.push('/');
+
+}
 
   return (
     <>
@@ -42,6 +50,7 @@ function DisplayData({ userDetails }) {
         <Button variant='primary' onClick={() => history.push('/phase3')}>
           Back
         </Button>
+        <ResetDataButton onClick={clearLocalStorage} text="Reset form"/>
       </div>
     </>
   );
