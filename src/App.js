@@ -13,6 +13,7 @@ import Phase3 from './components/Phase3';
 import DisplayData from './components/DisplayData';
 import './App.css';
 
+//Form Validations
 const validations = {
   name: { required: true, pattern: /[a-zA-Z]{2,}( )[a-zA-Z]{2,}/ },
   email: {
@@ -83,12 +84,15 @@ function App() {
     },
   });
 
+  //When App is mounted, check local storage for user data
   useEffect(() => {
     if (localStorage.getItem('formData')) {
       setFormData(JSON.parse(localStorage.getItem('formData')));
     }
   }, []);
 
+
+  //Set input value on change
   const inputChangeHandler = ({ target: { name, value } }) => {
     setFormData(prevState => ({
       ...prevState,
@@ -99,6 +103,7 @@ function App() {
     }));
   };
 
+  //Validate input value on blur / on form submission
   const validateInput = ({ target: { name, value } }) => {
     const newErrors = [];
 
@@ -129,25 +134,25 @@ function App() {
               formData={formData}
             />
           </Route>
-          <Route path='/Phase2' exact>
+          <Route path='/Phase2'>
             <Phase2
               onChange={inputChangeHandler}
               onValidate={validateInput}
               formData={formData}
             />
           </Route>
-          <Route path='/Phase3' exact>
+          <Route path='/Phase3'>
             <Phase3
               onChange={inputChangeHandler}
               onValidate={validateInput}
               formData={formData}
             />
           </Route>
-          <Route path='/'>
+          <Route path='/home'>
             <DisplayData userDetails={formData} />
           </Route>
           <Route path='*'>
-            <Redirect to='/'></Redirect>
+            <Redirect to='/home'></Redirect>
           </Route>
         </Switch>
       </Router>
