@@ -143,11 +143,11 @@ function App() {
               formData={formData}
             />
           </Route>
-          <Route path='/home'>
+          <Route path='/'>
             <DisplayData userDetails={formData} />
           </Route>
           <Route path='*'>
-            <Redirect to='/home'></Redirect>
+            <Redirect to='/'></Redirect>
           </Route>
         </Switch>
       </Router>
